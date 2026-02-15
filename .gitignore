@@ -1,0 +1,19 @@
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor files
+.vscode/
+*.swp
+*.swo
+*~
+
+# Agent internal files
+.agent/
+.gemini/
+
+# Internal docs (not for deployment)
+FIX_*.md
+METRICS.md
+project_board.md

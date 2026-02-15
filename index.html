@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="VintageIQ — Institutional-grade family office portfolio monitoring, analytics, and reporting.">
+    <title>VintageIQ | Family Office Intelligence</title>
+
+    <!-- Open Graph / LinkedIn / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="VintageIQ — Family Office Intelligence">
+    <meta property="og:description"
+        content="Institutional-grade portfolio analytics for family offices. 100+ holdings, 15-year history, real-time risk monitoring, and board-ready reporting.">
+    <meta property="og:image" content="https://vintageiq.vercel.app/og-image.png">
+    <meta property="og:url" content="https://vintageiq.vercel.app">
+    <meta property="og:site_name" content="VintageIQ">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="VintageIQ — Family Office Intelligence">
+    <meta name="twitter:description"
+        content="Institutional-grade portfolio analytics for family offices. 100+ holdings across PE, VC, equities, bonds, and alternatives.">
+    <meta name="twitter:image" content="https://vintageiq.vercel.app/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Mobile Header -->
+        <header class="mobile-header">
+            <button class="hamburger" id="menu-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+            <span class="mobile-logo">◆ VintageIQ</span>
+        </header>
+        <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+        <aside class="sidebar" id="sidebar">
+            <div class="logo">
+                <span class="logo-icon">◆</span>
+                <span class="logo-text">VintageIQ</span>
+            </div>
+            <nav class="nav-menu">
+                <div class="nav-group">Core</div>
+                <a href="#" class="nav-item active" id="nav-dashboard">Portfolio Overview</a>
+                <a href="#" class="nav-item" id="nav-funds">Fund Holdings</a>
+                <a href="#" class="nav-item" id="nav-equities">Equity Holdings</a>
+                <a href="#" class="nav-item" id="nav-performance">Performance</a>
+                <a href="#" class="nav-item" id="nav-liquidity">Liquidity & Cash</a>
+
+                <div class="nav-group">Analysis</div>
+                <a href="#" class="nav-item" id="nav-risk">Risk</a>
+                <a href="#" class="nav-item" id="nav-exposure">Exposure</a>
+                <a href="#" class="nav-item" id="nav-attribution">Attribution & Fees</a>
+
+                <div class="nav-group">Structure</div>
+                <a href="#" class="nav-item" id="nav-leverage">Leverage</a>
+                <a href="#" class="nav-item" id="nav-governance">Governance</a>
+
+                <div class="nav-group">Reports</div>
+                <a href="#" class="nav-item" id="nav-report">Quarterly Report</a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">FO</div>
+                    <div class="user-details">
+                        <span class="user-name">Family Office Alpha</span>
+                        <span class="user-role">Administrator</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <main class="main-content" id="view-container"></main>
+    </div>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
