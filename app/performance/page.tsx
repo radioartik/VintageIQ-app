@@ -108,37 +108,39 @@ export default function PerformancePage() {
                     <div className="pt-4 border-t border-border/50">
                         {/* Cumulative Cash Flows */}
                         <h3 className="text-sm font-semibold text-muted-foreground mb-6">Cumulative Cash Flows — Since Inception</h3>
-                        <div className="flex items-end gap-1 h-56">
-                            {data.history.yearly.map((year) => {
-                                const maxCum = Math.max(...data.history.yearly.map(y => y.cumInjections + y.cumGains + y.cumDistributions));
-                                const total = year.cumInjections + year.cumGains + year.cumDistributions;
-                                const injPct = (year.cumInjections / maxCum) * 100;
-                                const gainsPct = (year.cumGains / maxCum) * 100;
-                                const distPct = (year.cumDistributions / maxCum) * 100;
-                                return (
-                                    <div key={year.year} className="flex-1 flex flex-col items-center justify-end h-full group relative">
-                                        <div className="w-full max-w-6 flex flex-col justify-end transition-all duration-300 group-hover:scale-x-110" style={{ height: '100%' }}>
-                                            <div className="rounded-t-sm" style={{ height: `${distPct}%`, backgroundColor: '#d97706', minHeight: distPct > 0 ? '1px' : 0 }} />
-                                            <div style={{ height: `${gainsPct}%`, backgroundColor: '#10b981', minHeight: gainsPct > 0 ? '1px' : 0 }} />
-                                            <div className="rounded-b-sm" style={{ height: `${injPct}%`, backgroundColor: '#2563eb', minHeight: injPct > 0 ? '1px' : 0 }} />
-                                        </div>
-                                        <span className="text-[9px] text-muted-foreground mt-2 font-medium">{year.year}</span>
+                        <div className="overflow-x-auto pb-4">
+                            <div className="flex items-end gap-1 h-56 min-w-[600px]">
+                                {data.history.yearly.map((year) => {
+                                    const maxCum = Math.max(...data.history.yearly.map(y => y.cumInjections + y.cumGains + y.cumDistributions));
+                                    const total = year.cumInjections + year.cumGains + year.cumDistributions;
+                                    const injPct = (year.cumInjections / maxCum) * 100;
+                                    const gainsPct = (year.cumGains / maxCum) * 100;
+                                    const distPct = (year.cumDistributions / maxCum) * 100;
+                                    return (
+                                        <div key={year.year} className="flex-1 flex flex-col items-center justify-end h-full group relative">
+                                            <div className="w-full max-w-6 flex flex-col justify-end transition-all duration-300 group-hover:scale-x-110" style={{ height: '100%' }}>
+                                                <div className="rounded-t-sm" style={{ height: `${distPct}%`, backgroundColor: '#d97706', minHeight: distPct > 0 ? '1px' : 0 }} />
+                                                <div style={{ height: `${gainsPct}%`, backgroundColor: '#10b981', minHeight: gainsPct > 0 ? '1px' : 0 }} />
+                                                <div className="rounded-b-sm" style={{ height: `${injPct}%`, backgroundColor: '#2563eb', minHeight: injPct > 0 ? '1px' : 0 }} />
+                                            </div>
+                                            <span className="text-[9px] text-muted-foreground mt-2 font-medium">{year.year}</span>
 
-                                        {/* Tooltip on hover */}
-                                        <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground text-[10px] p-2 rounded shadow-lg border border-border opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-10 whitespace-nowrap">
-                                            <div className="font-bold border-b border-border pb-1 mb-1">{year.year}</div>
-                                            <div className="flex justify-between gap-4"><span>Inj:</span> <span>{formatCurrency(year.cumInjections, true)}</span></div>
-                                            <div className="flex justify-between gap-4"><span>Gains:</span> <span>{formatCurrency(year.cumGains, true)}</span></div>
-                                            <div className="flex justify-between gap-4"><span>Dist:</span> <span>{formatCurrency(year.cumDistributions, true)}</span></div>
+                                            {/* Tooltip on hover */}
+                                            <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground text-[10px] p-2 rounded shadow-lg border border-border opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-10 whitespace-nowrap">
+                                                <div className="font-bold border-b border-border pb-1 mb-1">{year.year}</div>
+                                                <div className="flex justify-between gap-4"><span>Inj:</span> <span>{formatCurrency(year.cumInjections, true)}</span></div>
+                                                <div className="flex justify-between gap-4"><span>Gains:</span> <span>{formatCurrency(year.cumGains, true)}</span></div>
+                                                <div className="flex justify-between gap-4"><span>Dist:</span> <span>{formatCurrency(year.cumDistributions, true)}</span></div>
+                                            </div>
                                         </div>
-                                    </div>
-                                );
-                            })}
+                                    );
+                                })}
+                            </div>
                         </div>
-                        <div className="flex gap-6 mt-6 justify-center">
-                            <div className="flex items-center gap-2 text-xs text-muted-foreground"><div className="w-3 h-3 rounded-sm bg-[#2563eb]" /> Cumulative Injections</div>
-                            <div className="flex items-center gap-2 text-xs text-muted-foreground"><div className="w-3 h-3 rounded-sm bg-[#10b981]" /> Investment Gains</div>
-                            <div className="flex items-center gap-2 text-xs text-muted-foreground"><div className="w-3 h-3 rounded-sm bg-[#d97706]" /> Distributions</div>
+                        <div className="flex flex-wrap gap-4 mt-6 justify-center">
+                            <div className="flex items-center gap-2 text-xs text-muted-foreground whitespace-nowrap"><div className="w-3 h-3 rounded-sm bg-[#2563eb]" /> Cumulative Injections</div>
+                            <div className="flex items-center gap-2 text-xs text-muted-foreground whitespace-nowrap"><div className="w-3 h-3 rounded-sm bg-[#10b981]" /> Investment Gains</div>
+                            <div className="flex items-center gap-2 text-xs text-muted-foreground whitespace-nowrap"><div className="w-3 h-3 rounded-sm bg-[#d97706]" /> Distributions</div>
                         </div>
                     </div>
                 </CardContent>
@@ -191,46 +193,48 @@ export default function PerformancePage() {
                     <CardTitle className="text-lg text-foreground">Strategy Benchmarking</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <table className="w-full text-sm">
-                        <thead>
-                            <tr className="border-b border-border">
-                                <th className="text-left text-xs font-medium text-muted-foreground py-2 px-2">Strategy</th>
-                                <th className="text-left text-xs font-medium text-muted-foreground py-2 px-2">Funds</th>
-                                <th className="text-right text-xs font-medium text-muted-foreground py-2 px-2">IRR</th>
-                                <th className="text-right text-xs font-medium text-muted-foreground py-2 px-2">Benchmark</th>
-                                <th className="text-right text-xs font-medium text-muted-foreground py-2 px-2">Alpha</th>
-                                <th className="text-left text-xs font-medium text-muted-foreground py-2 px-2">Quartile</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {(['PE', 'VC', 'RE', 'PC', 'EQ_FUNDS'] as const).map((type) => {
-                                const tf = data.funds.filter(f => f.type === type);
-                                if (!tf.length) return null;
-                                const avg = tf.reduce((s, f) => s + f.irr, 0) / tf.length;
-                                const bm = benchmarks[type] || 0.10;
-                                const alpha = avg - bm;
-                                return (
-                                    <tr key={type} className="border-b border-border/50 hover:bg-muted/50 transition-colors">
-                                        <td className="py-2.5 px-2 text-foreground font-medium">{data.assetNames[type]}</td>
-                                        <td className="py-2.5 px-2 text-muted-foreground">{tf.length}</td>
-                                        <td className="py-2.5 px-2 text-right text-foreground">{formatPercent(avg)}</td>
-                                        <td className="py-2.5 px-2 text-right text-muted-foreground">{formatPercent(bm)}</td>
-                                        <td className={`py-2.5 px-2 text-right font-medium ${alpha > 0 ? "text-positive" : "text-negative"}`}>
-                                            {alpha > 0 ? "+" : ""}{formatPercent(alpha)}
-                                        </td>
-                                        <td className="py-2.5 px-2">
-                                            <Badge variant="outline" className={`text-[10px] ${alpha > 0.02 ? "border-emerald-500/30 text-positive" :
-                                                alpha > 0 ? "border-blue-500/30 text-blue-400" :
-                                                    "border-amber-500/30 text-amber-400"
-                                                }`}>
-                                                {alpha > 0.02 ? "Top Quartile" : alpha > 0 ? "Upper Half" : "Lower Half"}
-                                            </Badge>
-                                        </td>
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-sm">
+                            <thead>
+                                <tr className="border-b border-border">
+                                    <th className="text-left text-xs font-medium text-muted-foreground py-2 px-2">Strategy</th>
+                                    <th className="text-left text-xs font-medium text-muted-foreground py-2 px-2">Funds</th>
+                                    <th className="text-right text-xs font-medium text-muted-foreground py-2 px-2">IRR</th>
+                                    <th className="text-right text-xs font-medium text-muted-foreground py-2 px-2">Benchmark</th>
+                                    <th className="text-right text-xs font-medium text-muted-foreground py-2 px-2">Alpha</th>
+                                    <th className="text-left text-xs font-medium text-muted-foreground py-2 px-2">Quartile</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {(['PE', 'VC', 'RE', 'PC', 'EQ_FUNDS'] as const).map((type) => {
+                                    const tf = data.funds.filter(f => f.type === type);
+                                    if (!tf.length) return null;
+                                    const avg = tf.reduce((s, f) => s + f.irr, 0) / tf.length;
+                                    const bm = benchmarks[type] || 0.10;
+                                    const alpha = avg - bm;
+                                    return (
+                                        <tr key={type} className="border-b border-border/50 hover:bg-muted/50 transition-colors">
+                                            <td className="py-2.5 px-2 text-foreground font-medium">{data.assetNames[type]}</td>
+                                            <td className="py-2.5 px-2 text-muted-foreground">{tf.length}</td>
+                                            <td className="py-2.5 px-2 text-right text-foreground">{formatPercent(avg)}</td>
+                                            <td className="py-2.5 px-2 text-right text-muted-foreground">{formatPercent(bm)}</td>
+                                            <td className={`py-2.5 px-2 text-right font-medium ${alpha > 0 ? "text-positive" : "text-negative"}`}>
+                                                {alpha > 0 ? "+" : ""}{formatPercent(alpha)}
+                                            </td>
+                                            <td className="py-2.5 px-2">
+                                                <Badge variant="outline" className={`text-[10px] ${alpha > 0.02 ? "border-emerald-500/30 text-positive" :
+                                                    alpha > 0 ? "border-blue-500/30 text-blue-400" :
+                                                        "border-amber-500/30 text-amber-400"
+                                                    }`}>
+                                                    {alpha > 0.02 ? "Top Quartile" : alpha > 0 ? "Upper Half" : "Lower Half"}
+                                                </Badge>
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
+                    </div>
                 </CardContent>
             </Card>
         </div>
