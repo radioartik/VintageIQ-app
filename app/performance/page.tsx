@@ -64,29 +64,31 @@ export default function PerformancePage() {
                     <CardTitle className="text-lg text-foreground">Annual Returns</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <div className="flex items-end gap-1 h-48">
-                        {data.history.yearly.map((year) => {
-                            const pctVal = parseFloat(year.returnPct);
-                            const maxAbs = Math.max(...data.history.yearly.map(y => Math.abs(parseFloat(y.returnPct))));
-                            const heightPct = Math.abs(pctVal) / maxAbs * 100;
-                            const isNeg = pctVal < 0;
-                            return (
-                                <div key={year.year} className="flex-1 flex flex-col items-center justify-end h-full relative group">
-                                    <div className="absolute -top-1 text-[9px] text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                                        {pctVal >= 0 ? "+" : ""}{year.returnPct}%
+                    <div className="overflow-x-auto pb-2">
+                        <div className="flex items-end gap-1 h-48 min-w-[600px]">
+                            {data.history.yearly.map((year) => {
+                                const pctVal = parseFloat(year.returnPct);
+                                const maxAbs = Math.max(...data.history.yearly.map(y => Math.abs(parseFloat(y.returnPct))));
+                                const heightPct = Math.abs(pctVal) / maxAbs * 100;
+                                const isNeg = pctVal < 0;
+                                return (
+                                    <div key={year.year} className="flex-1 flex flex-col items-center justify-end h-full relative group">
+                                        <div className="absolute -top-1 text-[9px] text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                            {pctVal >= 0 ? "+" : ""}{year.returnPct}%
+                                        </div>
+                                        <div className="w-full flex flex-col items-center justify-end flex-1">
+                                            {!isNeg && (
+                                                <div className="mt-auto w-full max-w-6 rounded-t transition-all duration-500" style={{ height: `${heightPct}%`, backgroundColor: '#10b981' }} />
+                                            )}
+                                            {isNeg && (
+                                                <div className="mt-auto w-full max-w-6 rounded-b transition-all duration-500" style={{ height: `${heightPct}%`, backgroundColor: '#ef4444' }} />
+                                            )}
+                                        </div>
+                                        <span className="text-[9px] text-muted-foreground mt-1">{year.year}</span>
                                     </div>
-                                    <div className="w-full flex flex-col items-center justify-end flex-1">
-                                        {!isNeg && (
-                                            <div className="mt-auto w-full max-w-6 rounded-t transition-all duration-500" style={{ height: `${heightPct}%`, backgroundColor: '#10b981' }} />
-                                        )}
-                                        {isNeg && (
-                                            <div className="mt-auto w-full max-w-6 rounded-b transition-all duration-500" style={{ height: `${heightPct}%`, backgroundColor: '#ef4444' }} />
-                                        )}
-                                    </div>
-                                    <span className="text-[9px] text-muted-foreground mt-1">{year.year}</span>
-                                </div>
-                            );
-                        })}
+                                );
+                            })}
+                        </div>
                     </div>
                 </CardContent>
             </Card>

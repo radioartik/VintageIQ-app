@@ -46,28 +46,30 @@ export default function LiquidityPage() {
                         <CardTitle className="text-lg text-foreground">Net Cash Flow Forecast (Monthly $M)</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="flex items-center gap-1 h-48">
-                            {monthlyFlows.map((m) => {
-                                const heightPct = (Math.abs(m.flow) / maxFlow) * 100;
-                                const isNeg = m.flow < 0;
-                                return (
-                                    <div key={m.month} className="flex-1 flex flex-col items-center h-full group">
-                                        <div className="flex-1 flex flex-col items-center justify-center w-full">
-                                            {!isNeg && (
-                                                <div className="mt-auto w-full max-w-5 rounded-t transition-all duration-500" style={{ height: `${heightPct / 2}%`, backgroundColor: '#10b981' }} />
-                                            )}
-                                            <div className="w-full h-px bg-border" />
-                                            {isNeg && (
-                                                <div className="w-full max-w-5 rounded-b transition-all duration-500" style={{ height: `${heightPct / 2}%`, backgroundColor: '#ef4444' }} />
-                                            )}
+                        <div className="overflow-x-auto pb-2">
+                            <div className="flex items-center gap-1 h-48 min-w-[500px]">
+                                {monthlyFlows.map((m) => {
+                                    const heightPct = (Math.abs(m.flow) / maxFlow) * 100;
+                                    const isNeg = m.flow < 0;
+                                    return (
+                                        <div key={m.month} className="flex-1 flex flex-col items-center h-full group">
+                                            <div className="flex-1 flex flex-col items-center justify-center w-full">
+                                                {!isNeg && (
+                                                    <div className="mt-auto w-full max-w-5 rounded-t transition-all duration-500" style={{ height: `${heightPct / 2}%`, backgroundColor: '#10b981' }} />
+                                                )}
+                                                <div className="w-full h-px bg-border" />
+                                                {isNeg && (
+                                                    <div className="w-full max-w-5 rounded-b transition-all duration-500" style={{ height: `${heightPct / 2}%`, backgroundColor: '#ef4444' }} />
+                                                )}
+                                            </div>
+                                            <div className="text-[9px] text-muted-foreground mt-1">{m.month}</div>
+                                            <div className={`text-[9px] font-medium ${isNeg ? 'text-negative' : 'text-positive'} opacity-0 group-hover:opacity-100`}>
+                                                {isNeg ? '' : '+'}${m.flow}M
+                                            </div>
                                         </div>
-                                        <div className="text-[9px] text-muted-foreground mt-1">{m.month}</div>
-                                        <div className={`text-[9px] font-medium ${isNeg ? 'text-negative' : 'text-positive'} opacity-0 group-hover:opacity-100`}>
-                                            {isNeg ? '' : '+'}${m.flow}M
-                                        </div>
-                                    </div>
-                                );
-                            })}
+                                    );
+                                })}
+                            </div>
                         </div>
                     </CardContent>
                 </Card>

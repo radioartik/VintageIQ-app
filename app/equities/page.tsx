@@ -171,7 +171,7 @@ export default function EquitiesPage() {
                         <ProgressBar
                             key={s.sector}
                             label={s.sector}
-                            value={`${s.pct}%`}
+                            value={formatPercent(s.pct)}
                             percentage={data.stockSectors[0] ? (s.pct / data.stockSectors[0].pct) * 100 : 0}
                             color={chartColors[i % chartColors.length]}
                         />
